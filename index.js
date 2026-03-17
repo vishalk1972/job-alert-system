@@ -1,3 +1,4 @@
+require("dotenv").config();
 const config = require("./config/source.json");
 const { fetchJPMCJobs } = require("./fetchers/jpmc");
 const { loadState, saveState, updateSeenIds } = require("./engine/state");

@@ -4,8 +4,8 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "vishalkuwar000@gmail.com",
-        pass: "ssvd mriz nzdu uhgd"
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASS
     }
 });
 
@@ -24,8 +24,8 @@ async function sendEmail(company, jobs) {
     if (!jobs.length) return;
 
     const mailOptions = {
-        from: "vishalkuwar000@gmail.com",
-        to: "vishalkuwar000@gmail.com",
+        from: process.env.EMAIL,
+        to: process.env.EMAIL,
         subject: ` ALERT ${jobs.length} New Jobs - ${company}`,
         text: formatJobs(jobs)
     };
