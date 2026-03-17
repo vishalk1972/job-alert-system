@@ -1,0 +1,96 @@
+const config = require("./config/source.json");
+const { fetchJPMCJobs } = require("./fetchers/jpmc");
+const { loadState, saveState, updateSeenIds } = require("./engine/state");
+const { sendEmail }=require("./utils/mailer")
+//Map company -> fetcher
+const fetcherMap = {
+    jpmc: fetchJPMCJobs
+};
+
+console.log("---------------------- START -------------------------")
+console.log("RUN:", new Date().toISOString());
+
+function formatDate(date) {
+    if (!date) return "N/A";
+    return new Date(date).toLocaleString();
+}
+
+async function processCompany(org) {
+    const { name, url } = org;
+
+    try {
+        console.log(`\nProcessing: ${name}`);
+
+        const fetcher = fetcherMap[name];
+
+        if (!fetcher) {
+            console.log(`No fetcher found for ${name}`);
+            return;
+        }
+
+        // Fetch jobs
+        const jobs = await fetcher(url);
+        console.log(`Fetched ${jobs.length} jobs`);
+
+        // Load state
+        let state = await loadState(name);
+        const seenSet = new Set(state.seen_ids);
+
+        const newJobs = [];
+
+        // Detect new jobs
+        for (let job of jobs) {
+            if (!seenSet.has(job.id)) {
+                newJobs.push(job);
+            }
+        }
+
+        // Logging new jobs
+        if (newJobs.length > 0) {
+            console.log(`\nNew Jobs (${newJobs.length}) for ${name}:\n`);
+
+            newJobs.forEach((job, index) => {
+                console.log(`Job ${index + 1}:`);
+                console.log(`ID        : ${job.id}`);
+                console.log(`Title     : ${job.title}`);
+                console.log(`Location  : ${job.location}`);
+                console.log(`Posted At : ${formatDate(job.postedAt)}`);
+                console.log(`URL       : ${job.url}`);
+                console.log("--------------------------------------------------");
+            });
+
+            // EMAIL Integration
+            if (newJobs.length > 0) {
+                console.log(`New Jobs (${newJobs.length}) for ${name}`);
+            
+                await sendEmail(name, newJobs);
+            
+            } else {
+                console.log(`No new jobs for ${name}`);
+            }
+
+        } else {
+            console.log(`No new jobs for ${name}`);
+        }
+
+        // Update state
+        const newIds = jobs.map(j => j.id);
+        state.seen_ids = updateSeenIds(state.seen_ids, newIds);
+
+        await saveState(name, state);
+
+    } catch (err) {
+        console.error(`Error processing ${name}:`, err.message);
+    }
+}
+
+async function main() {
+    const organisations = config.organisations;
+
+    for (let org of organisations) {
+        await processCompany(org);
+    }
+    console.log("---------------------- END -------------------------\n")
+}
+
+main();
