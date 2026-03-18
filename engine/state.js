@@ -1,6 +1,10 @@
 const fs = require("fs/promises");
 const path = require("path");
 
+
+async function ensureDirExists(dirPath) {
+    await fs.mkdir(dirPath, { recursive: true });
+}
 //Build file path: data/jpmc.json
 function getFilePath(company) {
     return path.join(__dirname, "../data", `${company}.json`);
@@ -10,6 +14,7 @@ function getFilePath(company) {
 async function loadState(company) {
     try {
         const filePath = getFilePath(company);
+        await ensureDirExists(path.dirname(filePath));
         const data = await fs.readFile(filePath, "utf-8");
         return JSON.parse(data);
     } catch (err) {
@@ -21,6 +26,7 @@ async function loadState(company) {
 //Save state
 async function saveState(company, state) {
     const filePath = getFilePath(company);
+    await ensureDirExists(path.dirname(filePath));
 
     await fs.writeFile(
         filePath,
