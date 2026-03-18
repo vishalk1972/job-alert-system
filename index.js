@@ -7,6 +7,10 @@ const { fetchJPMCJobs } = require("./fetchers/jpmc");
 const { fetchMorganStanleyJobs } = require("./fetchers/morganstanley")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
+
+
+//
+let isRunning = false;
 //Map company -> fetcher
 const fetcherMap = {
     jpmc: fetchJPMCJobs,
@@ -108,11 +112,19 @@ app.listen(process.env.PORT, () => {
 });
 
 cron.schedule("*/3 * * * *", async () => {
+    if (isRunning) {
+        console.log("Skipping run, previous still executing");
+        return;
+    }
+
+    isRunning = true;
     console.log("Starting job at:", new Date().toISOString());
 
     try {
         await main();
     } catch (err) {
         console.error("Main job failed:", err.message);
+    } finally{
+        isRunning = false
     }
 });
