@@ -1,6 +1,8 @@
 require("dotenv").config();
 const config = require("./config/source.json");
 const cron = require("node-cron");
+const express = require("express");
+const app = express();
 const { fetchJPMCJobs } = require("./fetchers/jpmc");
 const { fetchMorganStanleyJobs } = require("./fetchers/morganstanley")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
@@ -97,6 +99,13 @@ async function main() {
     console.log("---------------------- END -------------------------\n")
 }
 
+// to deploy on render we need this
+app.get("/", (req, res) => {
+    res.send("Running");
+});
+app.listen(process.env.PORT, () => {
+    console.log(`Server running on port ${process.env.PORT}`);
+});
 
 cron.schedule("*/3 * * * *", async () => {
     console.log("Starting job at:", new Date().toISOString());
