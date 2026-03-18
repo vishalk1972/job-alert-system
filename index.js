@@ -111,22 +111,20 @@ app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
 });
 
-// cron.schedule("*/3 * * * *", async () => {
-//     if (isRunning) {
-//         console.log("Skipping run, previous still executing");
-//         return;
-//     }
+cron.schedule("*/3 * * * *", async () => {
+    if (isRunning) {
+        console.log("Skipping run, previous still executing");
+        return;
+    }
 
-//     isRunning = true;
-//     console.log("Starting job at:", new Date().toISOString());
+    isRunning = true;
+    console.log("Starting job at:", new Date().toISOString());
 
-//     try {
-//         await main();
-//     } catch (err) {
-//         console.error("Main job failed:", err.message);
-//     } finally{
-//         isRunning = false
-//     }
-// });
-
-main()
+    try {
+        await main();
+    } catch (err) {
+        console.error("Main job failed:", err.message);
+    } finally{
+        isRunning = false
+    }
+});
