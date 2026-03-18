@@ -2,11 +2,15 @@ const nodemailer = require("nodemailer");
 
 //Create transporter (Gmail for now)
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    // service: "gmail"
+    host: "smtp.gmail.com", // added for render can be removed later
+    port: 465, // added for render can be removed later
+    secure: true,
     auth: {
         user: process.env.EMAIL,
         pass: process.env.EMAIL_PASS
-    }
+    },
+    family: 4, // added for render can be removed later
 });
 
 //Format jobs nicely
