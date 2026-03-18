@@ -1,5 +1,6 @@
 require("dotenv").config();
 const config = require("./config/source.json");
+const cron = require("node-cron");
 const { fetchJPMCJobs } = require("./fetchers/jpmc");
 const { fetchMorganStanleyJobs } = require("./fetchers/morganstanley")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
@@ -96,4 +97,13 @@ async function main() {
     console.log("---------------------- END -------------------------\n")
 }
 
-main();
+
+cron.schedule("*/3 * * * *", async () => {
+    console.log("Starting job at:", new Date().toISOString());
+
+    try {
+        await main();
+    } catch (err) {
+        console.error("Main job failed:", err.message);
+    }
+});
