@@ -1,11 +1,13 @@
 require("dotenv").config();
 const config = require("./config/source.json");
 const { fetchJPMCJobs } = require("./fetchers/jpmc");
+const { fetchMorganStanleyJobs } = require("./fetchers/morganstanley")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
 //Map company -> fetcher
 const fetcherMap = {
-    jpmc: fetchJPMCJobs
+    jpmc: fetchJPMCJobs,
+    morganstanley : fetchMorganStanleyJobs
 };
 
 console.log("---------------------- START -------------------------")

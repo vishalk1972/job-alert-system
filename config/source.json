@@ -3,8 +3,16 @@
       {
         "name": "jpmc",
         "type": "api",
-        "url": "https://jpmc.fa.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList.workLocation,requisitionList.otherWorkLocations,requisitionList.secondaryLocations,flexFieldsFacet.values,requisitionList.requisitionFlexFields&finder=findReqs;siteNumber=CX_1001,facetsList=LOCATIONS%3BWORK_LOCATIONS%3BWORKPLACE_TYPES%3BTITLES%3BCATEGORIES%3BORGANIZATIONS%3BPOSTING_DATES%3BFLEX_FIELDS,limit=5,sortBy=POSTING_DATES_DESC"
+        "url": "https://jpmc.fa.oraclecloud.com/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&expand=requisitionList.workLocation,requisitionList.otherWorkLocations,requisitionList.secondaryLocations,flexFieldsFacet.values,requisitionList.requisitionFlexFields&finder=findReqs;siteNumber=CX_1001,facetsList=LOCATIONS%3BWORK_LOCATIONS%3BWORKPLACE_TYPES%3BTITLES%3BCATEGORIES%3BORGANIZATIONS%3BPOSTING_DATES%3BFLEX_FIELDS,limit=25,lastSelectedFacet=CATEGORIES,locationId=300000000289360,selectedCategoriesFacet=300000086152753%3B300000086250134%3B300000086144371%3B300000086144003%3B300000086249821%3B300049451194835,sortBy=POSTING_DATES_DESC"
+      },
+      {
+        "name": "morganstanley",
+        "type": "api",
+        "url": "https://morganstanley.eightfold.ai/api/pcsx/search?domain=morganstanley.com&query=&location=&sort_by=timestamp&filter_businessarea=technology&filter_businessarea=technology+and+operations&filter_country=India"
       }
     ]
+
+
+    
 }
 
