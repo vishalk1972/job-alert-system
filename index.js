@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const { fetchJPMCJobs } = require("./fetchers/jpmc");
 const { fetchMorganStanleyJobs } = require("./fetchers/morganstanley")
+const { fetchCiscoJobs } = require("./fetchers/cisco")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
 
@@ -14,7 +15,8 @@ let isRunning = false;
 //Map company -> fetcher
 const fetcherMap = {
     jpmc: fetchJPMCJobs,
-    morganstanley : fetchMorganStanleyJobs
+    morganstanley : fetchMorganStanleyJobs,
+    cisco : fetchCiscoJobs
 };
 
 console.log("---------------------- START -------------------------")
