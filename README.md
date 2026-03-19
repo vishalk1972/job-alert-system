@@ -12,3 +12,9 @@ A Node.js-based polling system that tracks new job postings and sends alerts.
 - Node.js
 - Cron
 - Nodemailer
+
+
+## Support 
+1. jpmc
+2. morgan stanley
+3. cisco
