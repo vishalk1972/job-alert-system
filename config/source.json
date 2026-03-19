@@ -9,6 +9,11 @@
         "name": "morganstanley",
         "type": "api",
         "url": "https://morganstanley.eightfold.ai/api/pcsx/search?domain=morganstanley.com&query=&location=&sort_by=timestamp&filter_businessarea=technology&filter_businessarea=technology+and+operations&filter_country=India"
+      },
+      {
+        "name": "cisco",
+        "type": "api",
+        "url": "https://careers.cisco.com"
       }
     ]
 

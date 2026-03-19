@@ -5,6 +5,7 @@ const express = require("express");
 const app = express();
 const { fetchJPMCJobs } = require("./fetchers/jpmc");
 const { fetchMorganStanleyJobs } = require("./fetchers/morganstanley")
+const { fetchCiscoJobs } = require("./fetchers/cisco")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
 
@@ -14,7 +15,8 @@ let isRunning = false;
 //Map company -> fetcher
 const fetcherMap = {
     jpmc: fetchJPMCJobs,
-    morganstanley : fetchMorganStanleyJobs
+    morganstanley : fetchMorganStanleyJobs,
+    cisco : fetchCiscoJobs
 };
 
 console.log("---------------------- START -------------------------")
@@ -73,7 +75,7 @@ async function processCompany(org) {
             if (newJobs.length > 0) {
                 console.log(`New Jobs (${newJobs.length}) for ${name}`);
             
-                await sendEmail(name, newJobs);
+                // await sendEmail(name, newJobs);
             
             } else {
                 console.log(`No new jobs for ${name}`);
@@ -111,20 +113,22 @@ app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
 });
 
-cron.schedule("*/3 * * * *", async () => {
-    if (isRunning) {
-        console.log("Skipping run, previous still executing");
-        return;
-    }
+main()
 
-    isRunning = true;
-    console.log("Starting job at:", new Date().toISOString());
+// cron.schedule("*/3 * * * *", async () => {
+//     if (isRunning) {
+//         console.log("Skipping run, previous still executing");
+//         return;
+//     }
 
-    try {
-        await main();
-    } catch (err) {
-        console.error("Main job failed:", err.message);
-    } finally{
-        isRunning = false
-    }
-});
+//     isRunning = true;
+//     console.log("Starting job at:", new Date().toISOString());
+
+//     try {
+//         await main();
+//     } catch (err) {
+//         console.error("Main job failed:", err.message);
+//     } finally{
+//         isRunning = false
+//     }
+// });
