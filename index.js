@@ -3,9 +3,11 @@ const config = require("./config/source.json");
 const cron = require("node-cron");
 const express = require("express");
 const app = express();
+// fetchers
 const { fetchJPMCJobs } = require("./fetchers/jpmc");
 const { fetchMorganStanleyJobs } = require("./fetchers/morganstanley")
 const { fetchCiscoJobs } = require("./fetchers/cisco")
+const { fetchGoldmanJobs } = require("./fetchers/goldmansachs")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
 
@@ -16,7 +18,8 @@ let isRunning = false;
 const fetcherMap = {
     jpmc: fetchJPMCJobs,
     morganstanley : fetchMorganStanleyJobs,
-    cisco : fetchCiscoJobs
+    cisco : fetchCiscoJobs,
+    goldmansachs : fetchGoldmanJobs
 };
 
 console.log("---------------------- START -------------------------")

@@ -14,6 +14,11 @@
         "name": "cisco",
         "type": "api",
         "url": "https://careers.cisco.com"
+      },
+      {
+        "name": "goldmansachs",
+        "type": "api",
+        "url": "https://api-higher.gs.com/gateway/api/v1/graphql"
       }
     ]
 
