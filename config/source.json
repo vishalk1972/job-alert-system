@@ -19,6 +19,11 @@
         "name": "goldmansachs",
         "type": "api",
         "url": "https://api-higher.gs.com/gateway/api/v1/graphql"
+      },
+      {
+        "name": "adobe",
+        "type": "api",
+        "url": "https://careers.adobe.com/widgets"
       }
     ]
 

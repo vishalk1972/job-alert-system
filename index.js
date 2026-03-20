@@ -8,6 +8,7 @@ const { fetchJPMCJobs } = require("./fetchers/jpmc");
 const { fetchMorganStanleyJobs } = require("./fetchers/morganstanley")
 const { fetchCiscoJobs } = require("./fetchers/cisco")
 const { fetchGoldmanJobs } = require("./fetchers/goldmansachs")
+const { fetchAdobeJobs } = require("./fetchers/adobe")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
 
@@ -19,7 +20,8 @@ const fetcherMap = {
     jpmc: fetchJPMCJobs,
     morganstanley : fetchMorganStanleyJobs,
     cisco : fetchCiscoJobs,
-    goldmansachs : fetchGoldmanJobs
+    goldmansachs : fetchGoldmanJobs,
+    adobe : fetchAdobeJobs
 };
 
 console.log("---------------------- START -------------------------")
@@ -78,7 +80,7 @@ async function processCompany(org) {
             if (newJobs.length > 0) {
                 console.log(`New Jobs (${newJobs.length}) for ${name}`);
             
-                await sendEmail(name, newJobs);
+                // await sendEmail(name, newJobs);
             
             } else {
                 console.log(`No new jobs for ${name}`);
@@ -116,20 +118,23 @@ app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
 });
 
-cron.schedule("*/3 * * * *", async () => {
-    if (isRunning) {
-        console.log("Skipping run, previous still executing");
-        return;
-    }
+// cron.schedule("*/3 * * * *", async () => {
+//     if (isRunning) {
+//         console.log("Skipping run, previous still executing");
+//         return;
+//     }
 
-    isRunning = true;
-    console.log("Starting job at:", new Date().toISOString());
+//     isRunning = true;
+//     console.log("Starting job at:", new Date().toISOString());
 
-    try {
-        await main();
-    } catch (err) {
-        console.error("Main job failed:", err.message);
-    } finally{
-        isRunning = false
-    }
-});
+//     try {
+//         await main();
+//     } catch (err) {
+//         console.error("Main job failed:", err.message);
+//     } finally{
+//         isRunning = false
+//     }
+// });
+
+
+main()
