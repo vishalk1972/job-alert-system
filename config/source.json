@@ -24,7 +24,18 @@
         "name": "adobe",
         "type": "api",
         "url": "https://careers.adobe.com/widgets"
+      },
+      {
+        "name": "greenhouse",
+        "type": "platform",
+        "companies": [
+          "razorpaysoftwareprivatelimited",
+          "stripe",
+          "airbnb",
+          "coinbase"
+        ]
       }
+      
     ]
 
 
