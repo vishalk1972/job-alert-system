@@ -71,6 +71,12 @@ async function fetchAdobeJobs(url) {
             });
         }
 
+        allJobs.sort((a, b) => {
+            if (!a.postedAt) return 1;
+            if (!b.postedAt) return -1;
+            return b.postedAt - a.postedAt;
+        });
+
         // stop if last page
         if (jobs.length < 10) break;
     }
