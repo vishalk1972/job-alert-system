@@ -11,6 +11,7 @@ const { fetchGoldmanJobs } = require("./fetchers/goldmansachs")
 const { fetchAdobeJobs } = require("./fetchers/adobe")
 const { fetchMastercardJobs } = require("./fetchers/mastercard")
 const { fetchAmazonJobs } = require("./fetchers/amazon")
+const { fetchWalmartJobs } = require("./fetchers/walmart")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
 
@@ -19,13 +20,14 @@ const { sendEmail }=require("./utils/mailer")
 let isRunning = false;
 //Map company -> fetcher
 const fetcherMap = {
-    jpmc: fetchJPMCJobs,
-    morganstanley : fetchMorganStanleyJobs,
-    cisco : fetchCiscoJobs,
-    goldmansachs : fetchGoldmanJobs,
-    adobe : fetchAdobeJobs,
-    mastercard : fetchMastercardJobs,
-    amazon : fetchAmazonJobs
+    // jpmc: fetchJPMCJobs,
+    // morganstanley : fetchMorganStanleyJobs,
+    // cisco : fetchCiscoJobs,
+    // goldmansachs : fetchGoldmanJobs,
+    // adobe : fetchAdobeJobs,
+    // mastercard : fetchMastercardJobs,
+    // amazon : fetchAmazonJobs,
+    walmart : fetchWalmartJobs
 };
 
 console.log("---------------------- START -------------------------")
