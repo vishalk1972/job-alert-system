@@ -21,3 +21,4 @@ A Node.js-based polling system that tracks new job postings and sends alerts.
 4. goldman sachs
 5. adobe
 6. mastercard
+7. amazon
