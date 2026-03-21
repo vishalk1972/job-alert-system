@@ -42,6 +42,11 @@ async function fetchMorganStanleyJobs(baseUrl) {
                 });
             }
 
+            allJobs.sort((a, b) => {
+                if (!a.postedAt) return 1;
+                if (!b.postedAt) return -1;
+                return b.postedAt - a.postedAt;
+            });
             // Stop early if fewer results
             if (jobs.length < 10) break;
         }

@@ -70,6 +70,12 @@ async function fetchCiscoJobs(url) {
             });
         }
 
+        allJobs.sort((a, b) => {
+            if (!a.postedAt) return 1;
+            if (!b.postedAt) return -1;
+            return b.postedAt - a.postedAt;
+        });
+
         // stop early if less than expected
         if (jobs.length < 10) break;
     }
