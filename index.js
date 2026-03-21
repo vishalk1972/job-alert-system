@@ -9,6 +9,7 @@ const { fetchMorganStanleyJobs } = require("./fetchers/morganstanley")
 const { fetchCiscoJobs } = require("./fetchers/cisco")
 const { fetchGoldmanJobs } = require("./fetchers/goldmansachs")
 const { fetchAdobeJobs } = require("./fetchers/adobe")
+const { fetchMastercardJobs } = require("./fetchers/mastercard")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
 
@@ -21,7 +22,8 @@ const fetcherMap = {
     morganstanley : fetchMorganStanleyJobs,
     cisco : fetchCiscoJobs,
     goldmansachs : fetchGoldmanJobs,
-    adobe : fetchAdobeJobs
+    adobe : fetchAdobeJobs,
+    mastercard : fetchMastercardJobs
 };
 
 console.log("---------------------- START -------------------------")
@@ -135,4 +137,3 @@ cron.schedule("*/3 * * * *", async () => {
         isRunning = false
     }
 });
-

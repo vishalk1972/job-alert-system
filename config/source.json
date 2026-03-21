@@ -24,6 +24,11 @@
         "name": "adobe",
         "type": "api",
         "url": "https://careers.adobe.com/widgets"
+      },
+      {
+        "name": "mastercard",
+        "type": "api",
+        "url": "https://careers.mastercard.com/widgets"
       }
     ]
 
