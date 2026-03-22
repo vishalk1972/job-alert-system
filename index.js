@@ -27,7 +27,7 @@ const fetcherMap = {
     adobe : fetchAdobeJobs,
     mastercard : fetchMastercardJobs,
     amazon : fetchAmazonJobs,
-    walmart : fetchWalmartJobs
+    // walmart : fetchWalmartJobs,
 };
 
 console.log("---------------------- START -------------------------")
@@ -152,3 +152,4 @@ cron.schedule("*/3 * * * *", async () => {
         isRunning = false
     }
 });
+// main()
