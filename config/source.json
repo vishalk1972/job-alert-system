@@ -41,9 +41,29 @@
         "url" : "https://careers.walmart.com/api/streaming/careers-ai/api/chat/sync?chatBasedSearchJob"
       },
       {
-        "name" : "workday",
-        "type" : "api",
+        "name": "workday_main",
+        "type": "workday",
         "url" : "https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday/jobs"
+      },
+      {
+        "name": "workday_servicenow",
+        "type": "workday",
+        "url": "https://servicenow.wd5.myworkdayjobs.com/jobs"
+      },
+      {
+        "name": "workday_paypal",
+        "type": "workday",
+        "url": "https://paypal.wd1.myworkdayjobs.com/jobs"
+      },
+      {
+        "name": "workday_vmware",
+        "type": "workday",
+        "url": "https://vmware.wd1.myworkdayjobs.com/jobs"
+      },
+      {
+        "name": "workday_splunk",
+        "type": "workday",
+        "url": "https://splunk.wd1.myworkdayjobs.com/jobs"
       }
     ]
 
