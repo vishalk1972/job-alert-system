@@ -39,6 +39,11 @@
         "name" : "walmart",
         "type" : "api",
         "url" : "https://careers.walmart.com/api/streaming/careers-ai/api/chat/sync?chatBasedSearchJob"
+      },
+      {
+        "name" : "workday",
+        "type" : "api",
+        "url" : "https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday/jobs"
       }
     ]
 
