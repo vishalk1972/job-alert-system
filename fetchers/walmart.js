@@ -81,7 +81,7 @@ async function fetchWalmartJobs(url) {
                     ? new Date(job.jobPostingStartDate)
                     : null,
                 url: job.job_id
-                    ? `https://careers.walmart.com/us/jobs/${job.job_id}`
+                    ? `https://careers.walmart.com/us/en/jobs/${job.job_id}`
                     : "N/A"
             }));
 
