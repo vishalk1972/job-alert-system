@@ -44,6 +44,11 @@
         "name" : "workday",
         "type" : "api",
         "url" : "https://workday.wd5.myworkdayjobs.com/wday/cxs/workday/Workday/jobs"
+      },
+      {
+        "name" : "deepintent",
+        "type" : "api",
+        "url" : "https://job-boards.greenhouse.io/embed/job_board?for=deepintent&validityToken=icGxx43M1HJpWg74kvoWjPYvE0JZHq1dTguiYD3bE1661sVjjZzAdiL5DAMPpcFTPj87UHFFBDJnAbLI6huOInCj3q6obWQi62rPDJfh0Wb4i86tOjmTGsaF5_WTU_iuq2aEAqACtjVP9nDmgEehuGskN_n_79HE8AB-U2biSuNEp4r7qB14iEL7aYan6iWuhRRZuT5qxuzq51ilee9RAAInGpSl45yqWaxbXwifMnnDlUbkfZ3u8MO9yAjpRKHkhBK5E9XId-9t7-Zquw-1v221Is2rZs6lhsWC92SwhS7q6x4wbFZJs5Hzpb89XlTWb2Gj4zaRVGLuc2qQI8bFeQ%3D%3D&departments%5B%5D=4049133004&offices%5B%5D=4028851004&_data=routes%2Fembed.job_board"
       }
     ]
 

@@ -13,6 +13,7 @@ const { fetchMastercardJobs } = require("./fetchers/mastercard")
 const { fetchAmazonJobs } = require("./fetchers/amazon")
 const { fetchWalmartJobs } = require("./fetchers/walmart")
 const { fetchWorkdayJobs } = require("./fetchers/workday")
+const { fetchDeepIntentJobs } = require("./fetchers/deepintent")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
 
@@ -28,8 +29,9 @@ const fetcherMap = {
     adobe : fetchAdobeJobs,
     mastercard : fetchMastercardJobs,
     amazon : fetchAmazonJobs,
-    // walmart : fetchWalmartJobs,
-    workday : fetchWorkdayJobs
+    walmart : fetchWalmartJobs,
+    workday : fetchWorkdayJobs,
+    deepintent : fetchDeepIntentJobs,
 };
 
 console.log("---------------------- START -------------------------")
