@@ -29,7 +29,7 @@ const fetcherMap = {
     adobe : fetchAdobeJobs,
     mastercard : fetchMastercardJobs,
     amazon : fetchAmazonJobs,
-    walmart : fetchWalmartJobs,
+    // walmart : fetchWalmartJobs,
     workday : fetchWorkdayJobs,
     deepintent : fetchDeepIntentJobs,
 };
