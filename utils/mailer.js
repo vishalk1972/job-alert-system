@@ -165,8 +165,8 @@ async function sendEmail(company, jobs) {
     // Multiple recipients supported
     sendSmtpEmail.to = [
         { email: process.env.EMAIL }, // you
-        // { email: process.env.EMAIL1 },
-        // { email: process.env.EMAIL2 }
+        { email: process.env.EMAIL1 },
+        { email: process.env.EMAIL2 }
     ];
 
     try {
