@@ -1,5 +1,6 @@
 require("dotenv").config();
 const config = require("./config/source.json");
+const { isEntryLevel } = require("./utils/filter");
 const cron = require("node-cron");
 const express = require("express");
 const app = express();
@@ -65,8 +66,10 @@ async function processCompany(org) {
 
         const newJobs = [];
 
-        // Detect new jobs
         for (let job of jobs) {
+            // filter first
+            if (!isEntryLevel(job)) continue;
+        
             if (!seenSet.has(job.id)) {
                 newJobs.push(job);
             }
@@ -111,16 +114,6 @@ async function processCompany(org) {
     }
 }
 
-// async function main() {
-//     const organisations = config.organisations;
-
-//     for (let org of organisations) {
-//         await processCompany(org);
-//     }
-//     console.log("---------------------- END -------------------------\n")
-// }
-
-// parallel calls
 async function main() {
     const organisations = config.organisations;
 
@@ -139,20 +132,22 @@ app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
 });
 
-cron.schedule("*/3 * * * *", async () => {
-    if (isRunning) {
-        console.log("Skipping run, previous still executing");
-        return;
-    }
+// cron.schedule("*/3 * * * *", async () => {
+//     if (isRunning) {
+//         console.log("Skipping run, previous still executing");
+//         return;
+//     }
 
-    isRunning = true;
-    console.log("Starting job at:", new Date().toISOString());
+//     isRunning = true;
+//     console.log("Starting job at:", new Date().toISOString());
 
-    try {
-        await main();
-    } catch (err) {
-        console.error("Main job failed:", err.message);
-    } finally{
-        isRunning = false
-    }
-});
+//     try {
+//         await main();
+//     } catch (err) {
+//         console.error("Main job failed:", err.message);
+//     } finally{
+//         isRunning = false
+//     }
+// });
+
+main()
