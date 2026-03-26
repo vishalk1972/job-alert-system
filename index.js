@@ -14,6 +14,7 @@ const { fetchMastercardJobs } = require("./fetchers/mastercard")
 const { fetchAmazonJobs } = require("./fetchers/amazon")
 const { fetchWalmartJobs } = require("./fetchers/walmart")
 const { fetchWorkdayJobs } = require("./fetchers/workday")
+const { fetchMicrosoftJobs } = require("./fetchers/microsoft")
 const { fetchDeepIntentJobs } = require("./fetchers/deepintent")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
@@ -23,16 +24,17 @@ const { sendEmail }=require("./utils/mailer")
 let isRunning = false;
 //Map company -> fetcher
 const fetcherMap = {
-    jpmc: fetchJPMCJobs,
-    morganstanley : fetchMorganStanleyJobs,
-    cisco : fetchCiscoJobs,
-    goldmansachs : fetchGoldmanJobs,
-    adobe : fetchAdobeJobs,
-    mastercard : fetchMastercardJobs,
-    amazon : fetchAmazonJobs,
+    // jpmc: fetchJPMCJobs,
+    // morganstanley : fetchMorganStanleyJobs,
+    // cisco : fetchCiscoJobs,
+    // goldmansachs : fetchGoldmanJobs,
+    // adobe : fetchAdobeJobs,
+    // mastercard : fetchMastercardJobs,
+    // amazon : fetchAmazonJobs,
     // walmart : fetchWalmartJobs,
-    workday : fetchWorkdayJobs,
-    deepintent : fetchDeepIntentJobs,
+    // workday : fetchWorkdayJobs,
+    // deepintent : fetchDeepIntentJobs,
+    microsoft : fetchMicrosoftJobs,
 };
 
 console.log("---------------------- START -------------------------")
@@ -93,7 +95,7 @@ async function processCompany(org) {
             if (newJobs.length > 0) {
                 console.log(`New Jobs (${newJobs.length}) for ${name}`);
             
-                await sendEmail(name, newJobs);
+                // await sendEmail(name, newJobs);
             
             } else {
                 console.log(`No new jobs for ${name}`);
