@@ -192,7 +192,7 @@ async function fetchMastercardJobs(url) {
             if (jobs.length < 20) break;
         }
 
-        // 🔥 sort latest first
+        // sort latest first
         allJobs.sort((a, b) => {
             if (!a.postedAt) return 1;
             if (!b.postedAt) return -1;

@@ -11,11 +11,19 @@ function isEntryLevel(job) {
         "architect",
         "director",
         "manager",
-        "iii",
-        "iv",
+        "associate",
         "sr",
         "president",
         "test",
+        "qa",
+        "quality",
+        "3",
+        "4",
+        "5",
+        "6",
+        "iii",
+        "iv",
+        "v",
     ];
 
     return !blacklist.some(word => title.includes(word));

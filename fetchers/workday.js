@@ -75,7 +75,7 @@ async function fetchWorkdayJobs(url) {
             if (jobs.length < 20) break;
         }
 
-        // 🔥 Sort latest first
+        //Sort latest first
         allJobs.sort((a, b) => {
             if (!a.postedAt) return 1;
             if (!b.postedAt) return -1;
