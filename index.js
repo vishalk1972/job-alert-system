@@ -151,5 +151,3 @@ cron.schedule("*/3 * * * *", async () => {
         isRunning = false
     }
 });
-
-main()
