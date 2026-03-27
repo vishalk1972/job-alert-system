@@ -16,6 +16,7 @@ const { fetchAmazonJobs } = require("./fetchers/amazon")
 const { fetchWorkdayJobs } = require("./fetchers/workday")
 const { fetchMicrosoftJobs } = require("./fetchers/microsoft")
 const { fetchDeepIntentJobs } = require("./fetchers/deepintent")
+const { fetchPaypalJobs } = require("./fetchers/paypal")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendEmail }=require("./utils/mailer")
 
@@ -35,6 +36,7 @@ const fetcherMap = {
     workday : fetchWorkdayJobs,
     deepintent : fetchDeepIntentJobs,
     microsoft : fetchMicrosoftJobs,
+    paypal : fetchPaypalJobs
 };
 
 console.log("---------------------- START -------------------------")
@@ -61,7 +63,6 @@ async function processCompany(org) {
         // Fetch jobs
         const jobs = await fetcher(url);
         console.log(`Fetched ${jobs.length} jobs`);
-
         // Load state
         let state = await loadState(name);
         const seenSet = new Set(state.seen_ids);
@@ -95,7 +96,7 @@ async function processCompany(org) {
             if (newJobs.length > 0) {
                 console.log(`New Jobs (${newJobs.length}) for ${name}`);
             
-                await sendEmail(name, newJobs);
+                // await sendEmail(name, newJobs);
             
             } else {
                 console.log(`No new jobs for ${name}`);
@@ -106,7 +107,7 @@ async function processCompany(org) {
         }
 
         // Update state
-        const newIds = jobs.map(j => j.id);
+        const newIds = newJobs.map(j => j.id);
         state.seen_ids = updateSeenIds(state.seen_ids, newIds);
 
         await saveState(name, state);
@@ -134,20 +135,22 @@ app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
 });
 
-cron.schedule("*/3 * * * *", async () => {
-    if (isRunning) {
-        console.log("Skipping run, previous still executing");
-        return;
-    }
+// cron.schedule("*/3 * * * *", async () => {
+//     if (isRunning) {
+//         console.log("Skipping run, previous still executing");
+//         return;
+//     }
 
-    isRunning = true;
-    console.log("Starting job at:", new Date().toISOString());
+//     isRunning = true;
+//     console.log("Starting job at:", new Date().toISOString());
 
-    try {
-        await main();
-    } catch (err) {
-        console.error("Main job failed:", err.message);
-    } finally{
-        isRunning = false
-    }
-});
+//     try {
+//         await main();
+//     } catch (err) {
+//         console.error("Main job failed:", err.message);
+//     } finally{
+//         isRunning = false
+//     }
+// });
+
+main()
