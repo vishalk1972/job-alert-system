@@ -33,7 +33,11 @@ async function fetchMicrosoftJobs(url) {
                 });
             }
         }
-
+        allJobs.sort((a, b) => {
+            if (!a.postedAt) return 1;
+            if (!b.postedAt) return -1;
+            return b.postedAt - a.postedAt;
+        });
         return allJobs;
 
     } catch (err) {
