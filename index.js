@@ -12,7 +12,7 @@ const { fetchGoldmanJobs } = require("./fetchers/goldmansachs")
 const { fetchAdobeJobs } = require("./fetchers/adobe")
 const { fetchMastercardJobs } = require("./fetchers/mastercard")
 const { fetchAmazonJobs } = require("./fetchers/amazon")
-const { fetchWalmartJobs } = require("./fetchers/walmart")
+// const { fetchWalmartJobs } = require("./fetchers/walmart")
 const { fetchWorkdayJobs } = require("./fetchers/workday")
 const { fetchMicrosoftJobs } = require("./fetchers/microsoft")
 const { fetchDeepIntentJobs } = require("./fetchers/deepintent")
@@ -31,8 +31,8 @@ const fetcherMap = {
     adobe : fetchAdobeJobs,
     mastercard : fetchMastercardJobs,
     amazon : fetchAmazonJobs,
-    walmart : fetchWalmartJobs,
-    // workday : fetchWorkdayJobs,
+    // walmart : fetchWalmartJobs,
+    workday : fetchWorkdayJobs,
     deepintent : fetchDeepIntentJobs,
     microsoft : fetchMicrosoftJobs,
 };
@@ -122,7 +122,7 @@ async function main() {
     await Promise.all(
         organisations.map(org => processCompany(org))
     );
-
+    console.log("RUN END:", new Date().toISOString());
     console.log("---------------------- END -------------------------\n");
 }
 
