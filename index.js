@@ -16,6 +16,7 @@ const { fetchAmazonJobs } = require("./fetchers/amazon")
 const { fetchWorkdayJobs } = require("./fetchers/workday")
 const { fetchMicrosoftJobs } = require("./fetchers/microsoft")
 const { fetchDeepIntentJobs } = require("./fetchers/deepintent")
+const { fetchPaypalJobs } = require("./fetchers/paypal")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendTelegram } = require("./utils/telegram");
 
@@ -35,6 +36,7 @@ const fetcherMap = {
     workday : fetchWorkdayJobs,
     deepintent : fetchDeepIntentJobs,
     microsoft : fetchMicrosoftJobs,
+    paypal : fetchPaypalJobs
 };
 
 console.log("---------------------- START -------------------------")
@@ -61,7 +63,6 @@ async function processCompany(org) {
         // Fetch jobs
         const jobs = await fetcher(url);
         console.log(`Fetched ${jobs.length} jobs`);
-
         // Load state
         let state = await loadState(name);
         const seenSet = new Set(state.seen_ids);
@@ -106,7 +107,7 @@ async function processCompany(org) {
         }
 
         // Update state
-        const newIds = jobs.map(j => j.id);
+        const newIds = newJobs.map(j => j.id);
         state.seen_ids = updateSeenIds(state.seen_ids, newIds);
 
         await saveState(name, state);
@@ -151,3 +152,5 @@ cron.schedule("*/3 * * * *", async () => {
         isRunning = false
     }
 });
+
+// main()

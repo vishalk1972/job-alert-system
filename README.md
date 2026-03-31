@@ -26,3 +26,4 @@ A Node.js-based polling system that tracks new job postings and sends alerts.
 9. Workday
 10. Deepintent
 11. Microsoft
+12. Paypal
