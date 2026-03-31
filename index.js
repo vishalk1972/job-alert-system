@@ -17,7 +17,7 @@ const { fetchWorkdayJobs } = require("./fetchers/workday")
 const { fetchMicrosoftJobs } = require("./fetchers/microsoft")
 const { fetchDeepIntentJobs } = require("./fetchers/deepintent")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
-const { sendEmail }=require("./utils/mailer")
+const { sendTelegram } = require("./utils/telegram");
 
 
 //
@@ -95,7 +95,7 @@ async function processCompany(org) {
             if (newJobs.length > 0) {
                 console.log(`New Jobs (${newJobs.length}) for ${name}`);
             
-                await sendEmail(name, newJobs);
+                await sendTelegram(name, newJobs);
             
             } else {
                 console.log(`No new jobs for ${name}`);
