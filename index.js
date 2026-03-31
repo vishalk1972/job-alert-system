@@ -92,7 +92,7 @@ async function processCompany(org) {
                 console.log("--------------------------------------------------");
             });
 
-            // EMAIL Integration
+            // Telegram Integration
             if (newJobs.length > 0) {
                 console.log(`New Jobs (${newJobs.length}) for ${name}`);
             
@@ -152,5 +152,3 @@ cron.schedule("*/3 * * * *", async () => {
         isRunning = false
     }
 });
-
-// main()
