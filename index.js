@@ -17,6 +17,7 @@ const { fetchWorkdayJobs } = require("./fetchers/workday")
 const { fetchMicrosoftJobs } = require("./fetchers/microsoft")
 const { fetchDeepIntentJobs } = require("./fetchers/deepintent")
 const { fetchPaypalJobs } = require("./fetchers/paypal")
+const {fetchBNYMellonJobs } = require("./fetchers/bny")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendTelegram } = require("./utils/telegram");
 
@@ -36,7 +37,8 @@ const fetcherMap = {
     workday : fetchWorkdayJobs,
     deepintent : fetchDeepIntentJobs,
     microsoft : fetchMicrosoftJobs,
-    paypal : fetchPaypalJobs
+    paypal : fetchPaypalJobs,
+    bny : fetchBNYMellonJobs
 };
 
 console.log("---------------------- START -------------------------")
