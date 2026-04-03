@@ -69,7 +69,12 @@
         "name" : "wellsfargo",
         "type" : "api",
         "url" : "https://wd1.myworkdaysite.com/wday/cxs/wf/WellsFargoJobs/jobs"
-      }  
+      },
+      {
+        "name" : "uber",
+        "type" : "api",
+        "url" : "https://www.uber.com/api/loadSearchJobsResults?localeCode=en"
+      }    
     ]
 
 

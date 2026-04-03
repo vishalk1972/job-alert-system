@@ -19,6 +19,7 @@ const { fetchDeepIntentJobs } = require("./fetchers/deepintent")
 const { fetchPaypalJobs } = require("./fetchers/paypal")
 const {fetchBNYMellonJobs } = require("./fetchers/bny")
 const { fetchWellsFargoJobs } = require("./fetchers/wellsfargo")
+const { fetchUberJobs } = require("./fetchers/uber")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendTelegram } = require("./utils/telegram");
 
@@ -40,7 +41,8 @@ const fetcherMap = {
     microsoft : fetchMicrosoftJobs,
     paypal : fetchPaypalJobs,
     bny : fetchBNYMellonJobs,
-    wellsfargo : fetchWellsFargoJobs
+    wellsfargo : fetchWellsFargoJobs,
+    uber : fetchUberJobs,
 };
 
 console.log("---------------------- START -------------------------")
