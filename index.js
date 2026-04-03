@@ -18,6 +18,7 @@ const { fetchMicrosoftJobs } = require("./fetchers/microsoft")
 const { fetchDeepIntentJobs } = require("./fetchers/deepintent")
 const { fetchPaypalJobs } = require("./fetchers/paypal")
 const {fetchBNYMellonJobs } = require("./fetchers/bny")
+const { fetchWellsFargoJobs } = require("./fetchers/wellsfargo")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendTelegram } = require("./utils/telegram");
 
@@ -38,7 +39,8 @@ const fetcherMap = {
     deepintent : fetchDeepIntentJobs,
     microsoft : fetchMicrosoftJobs,
     paypal : fetchPaypalJobs,
-    bny : fetchBNYMellonJobs
+    bny : fetchBNYMellonJobs,
+    wellsfargo : fetchWellsFargoJobs
 };
 
 console.log("---------------------- START -------------------------")
@@ -162,5 +164,3 @@ cron.schedule("*/3 * * * *", async () => {
         isRunning = false
     }
 });
-
-main()
