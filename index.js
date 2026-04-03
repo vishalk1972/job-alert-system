@@ -67,6 +67,7 @@ async function processCompany(org) {
         console.log(`Fetched ${jobs.length} jobs`);
         // Load state
         let state = await loadState(name);
+        const isFirstRun = !state.seen_ids || state.seen_ids.length === 0; // added to avoid spam
         const seenSet = new Set(state.seen_ids);
 
         const newJobs = [];
@@ -95,7 +96,7 @@ async function processCompany(org) {
             });
 
             // Telegram Integration
-            if (newJobs.length > 0) {
+            if (!isFirstRun && newJobs.length > 0)  {
                 console.log(`New Jobs (${newJobs.length}) for ${name}`);
             
                 await sendTelegram(name, newJobs);
@@ -109,10 +110,17 @@ async function processCompany(org) {
         }
 
         // Update state
-        const newIds = newJobs.map(j => j.id);
+        const newIds = isFirstRun
+        ? jobs.map(j => j.id)   // store ALL jobs on first run
+        : newJobs.map(j => j.id);
         state.seen_ids = updateSeenIds(state.seen_ids, newIds);
 
+
         await saveState(name, state);
+
+        if (isFirstRun) {
+            console.log(`First run for ${name} → initializing seen_ids (no alerts)`);
+        }
 
     } catch (err) {
         console.error(`Error processing ${name}:`, err.message);
@@ -154,3 +162,5 @@ cron.schedule("*/3 * * * *", async () => {
         isRunning = false
     }
 });
+
+main()

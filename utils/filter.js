@@ -4,7 +4,7 @@ function isEntryLevel(job) {
     const normalized = title.replace(/[^a-z0-9 ]/g, " ");
 
     const blacklist = [
-        // "senior",
+        "senior",
         "lead",
         "principal",
         "staff",
