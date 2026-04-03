@@ -59,7 +59,6 @@ async function fetchUberJobs(url) {
             };
         });
 
-        console.log(jobs,"ganddduuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")
 
         return jobs;
 
