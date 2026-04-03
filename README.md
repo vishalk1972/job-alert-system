@@ -27,3 +27,5 @@ A Node.js-based polling system that tracks new job postings and sends alerts.
 10. Deepintent
 11. Microsoft
 12. Paypal
+13. BNY Melon
+14. Uber
