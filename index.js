@@ -20,6 +20,7 @@ const { fetchPaypalJobs } = require("./fetchers/paypal")
 const {fetchBNYMellonJobs } = require("./fetchers/bny")
 const { fetchWellsFargoJobs } = require("./fetchers/wellsfargo")
 const { fetchUberJobs } = require("./fetchers/uber")
+const { fetchNvidiaJobs } = require("./fetchers/nvidia")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendTelegram } = require("./utils/telegram");
 
@@ -43,6 +44,7 @@ const fetcherMap = {
     bny : fetchBNYMellonJobs,
     wellsfargo : fetchWellsFargoJobs,
     uber : fetchUberJobs,
+    nvidia : fetchNvidiaJobs
 };
 
 console.log("---------------------- START -------------------------")
