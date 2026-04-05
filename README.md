@@ -29,3 +29,4 @@ A Node.js-based polling system that tracks new job postings and sends alerts.
 12. Paypal
 13. BNY Melon
 14. Uber
+15. AMD
