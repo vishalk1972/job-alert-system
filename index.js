@@ -107,7 +107,7 @@ async function processCompany(org) {
             if (!isFirstRun && newJobs.length > 0)  {
                 console.log(`New Jobs (${newJobs.length}) for ${name}`);
             
-                // await sendTelegram(name, newJobs);
+                await sendTelegram(name, newJobs);
             
             } else {
                 console.log(`No new jobs for ${name}`);
@@ -170,5 +170,3 @@ cron.schedule("*/3 * * * *", async () => {
         isRunning = false
     }
 });
-
-main()

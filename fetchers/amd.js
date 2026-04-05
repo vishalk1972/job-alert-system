@@ -32,7 +32,7 @@ async function fetchAMDJobs(url) {
                     title: j.title || "N/A",
                     location: j.full_location || "",
                     postedAt: j.posted_date ? new Date(j.posted_date) : null,
-                    url: j.apply_url || j.meta_data?.canonical_url
+                    url: j.meta_data?.canonical_url
                 };
             });
 
