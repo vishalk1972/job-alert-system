@@ -79,6 +79,11 @@
         "name" : "nvidia",
         "type" : "api",
         "url" : "https://jobs.nvidia.com/api/pcsx/search?domain=nvidia.com&query=&location=India&sort_by=timestamp&filter_include_remote=1&filter_job_category=engineering&filter_job_category=it+-+information+technology"
+      },
+      {
+        "name" : "amd",
+        "type" : "api",
+        "url" : "https://careers.amd.com/api/jobs?sortBy=posted_date&descending=true&categories=Engineering&country=India&internal=false"
       }        
     ]
 

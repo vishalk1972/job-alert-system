@@ -21,6 +21,7 @@ const {fetchBNYMellonJobs } = require("./fetchers/bny")
 const { fetchWellsFargoJobs } = require("./fetchers/wellsfargo")
 const { fetchUberJobs } = require("./fetchers/uber")
 const { fetchNvidiaJobs } = require("./fetchers/nvidia")
+const { fetchAMDJobs } = require("./fetchers/amd")
 const { loadState, saveState, updateSeenIds } = require("./engine/state");
 const { sendTelegram } = require("./utils/telegram");
 
@@ -44,7 +45,8 @@ const fetcherMap = {
     bny : fetchBNYMellonJobs,
     wellsfargo : fetchWellsFargoJobs,
     uber : fetchUberJobs,
-    nvidia : fetchNvidiaJobs
+    nvidia : fetchNvidiaJobs,
+    amd : fetchAMDJobs
 };
 
 console.log("---------------------- START -------------------------")
@@ -105,7 +107,7 @@ async function processCompany(org) {
             if (!isFirstRun && newJobs.length > 0)  {
                 console.log(`New Jobs (${newJobs.length}) for ${name}`);
             
-                await sendTelegram(name, newJobs);
+                // await sendTelegram(name, newJobs);
             
             } else {
                 console.log(`No new jobs for ${name}`);
@@ -168,3 +170,5 @@ cron.schedule("*/3 * * * *", async () => {
         isRunning = false
     }
 });
+
+main()
